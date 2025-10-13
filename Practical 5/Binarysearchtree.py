@@ -78,4 +78,5 @@ print(bst.search(9))
 print("In-order:", bst.inorder_traversal())
 print("Pre-order:", bst.preorder_traversal())
 print("Post-order:", bst.postorder_traversal())
-        
+
+#Exercise 1:Implement a method to find the maximum value in the BST.

@@ -25,3 +25,24 @@ stack.push(3)
 print(stack.pop()) 
 print(stack.peek())  
 print(stack.size())  
+#Exercise 
+#1.Implement a function that uses a stack to evaluate postfix expressions.
+def evaluate_postfix(expression):
+    stack = []
+    for token in expression.split():
+        if token.isdigit():
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            elif token == '/':
+                stack.append(a / b)
+    return stack[0]
+#2.Create a function that uses two stacks to implement a queue
+
