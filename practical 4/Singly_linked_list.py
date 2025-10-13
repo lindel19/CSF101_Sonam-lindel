@@ -80,12 +80,17 @@ ll = LinkedList()
 ll.append(1)
 ll.append(2)
 ll.append(3)
+
 ll.display()
+
 ll.insert(4, 1)
 ll.display()
+
 ll.delete(2)
 ll.display()
+
 print(ll.search(4))  
 print(ll.search(5))
+
 ll.reverse()
 ll.display()
