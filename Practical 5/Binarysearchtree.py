@@ -1,4 +1,5 @@
 #Define the Node Class
+import ast
 class Node:
     def __init__(self, value):
         self.value = value
@@ -66,8 +67,6 @@ class BinarySearchTree:
             self._postorder_recursive(node.left, result)
             self._postorder_recursive(node.right, result)
             result.append(node.value)
-
-
 #test insertion
 bst = BinarySearchTree()
 for value in [5,3,7,2,4,6,8]:
@@ -78,5 +77,3 @@ print(bst.search(9))
 print("In-order:", bst.inorder_traversal())
 print("Pre-order:", bst.preorder_traversal())
 print("Post-order:", bst.postorder_traversal())
-
-#Exercise 1:Implement a method to find the maximum value in the BST.

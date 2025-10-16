@@ -114,3 +114,155 @@ for v in [2, 4, 6]:
 merged = LinkedList.merge_sorted(ll1, ll2)
 print("Merged sorted list:")
 merged.print_list()
+
+# LeetCode Problem 1: Reverse Linked List
+def reverseList(head):
+    prev = None
+    current = head
+    
+    while current:
+        next_temp = current.next
+        current.next = prev
+        prev = current
+        current = next_temp
+    
+    return prev
+
+# LeetCode Problem 2: Merge Two Sorted Lists
+def mergeTwoLists(list1, list2):
+    dummy = ListNode(0)
+    current = dummy
+    
+    while list1 and list2:
+        if list1.val <= list2.val:
+            current.next = list1
+            list1 = list1.next
+        else:
+            current.next = list2
+            list2 = list2.next
+        current = current.next
+    
+    if list1:
+        current.next = list1
+    if list2:
+        current.next = list2
+    
+    return dummy.next
+
+# LeetCode Problem 3: Remove Nth Node From End of List
+def removeNthFromEnd(head, n):
+    dummy = ListNode(0)
+    dummy.next = head
+    fast = slow = dummy
+    
+    for _ in range(n):
+        fast = fast.next
+    
+    while fast.next:
+        fast = fast.next
+        slow = slow.next
+    
+    slow.next = slow.next.next
+    
+    return dummy.next
+
+# ListNode class for LeetCode problems
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+# Helper function to create linked list from list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    for val in arr[1:]:
+        current.next = ListNode(val)
+        current = current.next
+    return head
+
+# Helper function to convert linked list to list
+def linked_list_to_list(head):
+    result = []
+    current = head
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
+# Test the implementations
+if __name__ == "__main__":
+    print("Testing LinkedList implementation:")
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    ll.print_list()
+    
+    print("\nTesting reverse method:")
+    ll.reverse()
+    ll.print_list()
+    
+    print("\nTesting find_middle method:")
+    print("Middle element:", ll.find_middle())
+    
+    print("\nTesting has_cycle method:")
+    print("Has cycle:", ll.has_cycle())
+    
+    print("\nTesting remove_duplicates method:")
+    ll_with_duplicates = LinkedList()
+    ll_with_duplicates.append(1)
+    ll_with_duplicates.append(2)
+    ll_with_duplicates.append(2)
+    ll_with_duplicates.append(3)
+    ll_with_duplicates.append(4)
+    ll_with_duplicates.append(4)
+    ll_with_duplicates.append(4)
+    ll_with_duplicates.append(5)
+    print("Before removing duplicates:")
+    ll_with_duplicates.display()
+    ll_with_duplicates.remove_duplicates()
+    print("After removing duplicates:")
+    ll_with_duplicates.display()
+    
+    print("\nTesting merge_sorted_lists method:")
+    list1 = LinkedList()
+    list1.append(1)
+    list1.append(3)
+    list1.append(5)
+    
+    list2 = LinkedList()
+    list2.append(2)
+    list2.append(4)
+    list2.append(6)
+    
+    print("List 1:")
+    list1.display()
+    print("List 2:")
+    list2.display()
+    
+    merged = list1.merge_sorted_lists(list2)
+    print("Merged list:")
+    merged.display()
+    
+    print("\nTesting LeetCode problems:")
+    
+    # Test Reverse Linked List
+    head = create_linked_list([1, 2, 3, 4, 5])
+    reversed_head = reverseList(head)
+    print("Reverse Linked List:", linked_list_to_list(reversed_head))
+    
+    # Test Merge Two Sorted Lists
+    list1 = create_linked_list([1, 2, 4])
+    list2 = create_linked_list([1, 3, 4])
+    merged = mergeTwoLists(list1, list2)
+    print("Merge Two Sorted Lists:", linked_list_to_list(merged))
+    
+    # Test Remove Nth Node From End of List
+    head = create_linked_list([1, 2, 3, 4, 5])
+    result = removeNthFromEnd(head, 2)
+    print("Remove Nth Node From End of List:", linked_list_to_list(result))
